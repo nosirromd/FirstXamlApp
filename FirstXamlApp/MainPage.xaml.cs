@@ -26,5 +26,14 @@ namespace FirstXamlApp
         {
             this.InitializeComponent();
         }
-    }
+
+		private async void Button_Click(object sender, RoutedEventArgs e)
+		{
+			MediaElement mediaElement = new MediaElement();
+			var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+			Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello World! I'm Xaml, DC's first Xaml app. I'm very pleased to meet you.");
+			mediaElement.SetSource(stream, stream.ContentType);
+			mediaElement.Play();
+		}
+	}
 }
